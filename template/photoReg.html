@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- contact1 -->
+<section class="w3l-contact-1 py-5" id="contact">
+  <div class="contacts-9 py-lg-5 py-md-4">
+    <div class="container">
+      <div class="contactct-fm map-content-9">
+        <div class="header-title text-center">
+          <h6 class="title-subhny"><span>Join Us</span></h6>
+          <h3 class="title-w3l mb-2">
+            Let’s Talk About
+            <span class="span-bold"> Your Need</span>
+          </h3>
+        </div>
+        <form class="pt-lg-4" method="post">
+          {% csrf_token %}
+          <div class="twice-two">
+            <input
+              type="text"
+              class="form-control"
+              name="txtName"
+              id="w3lName"
+              placeholder="Name"
+              required=""
+            />
+            <input
+              type="email"
+              class="form-control"
+              name="txtEmail"
+              id="w3lSender"
+              placeholder="Email"
+              required=""
+            />
+          </div>
+          <div class="twice-two">
+            <input
+              type="text"
+              class="form-control"
+              name="txtContact"
+              id="w3lPhone"
+              placeholder="Phone"
+              required=""
+            />
+            <input
+              type="password"
+              class="form-control"
+              name="txtPassword"
+              id="w3lSubject"
+              placeholder="Password"
+              required=""
+            />
+          </div>
+          <textarea
+            name="txtAddress"
+            class="form-control"
+            id="w3lMessage"
+            placeholder="Address"
+            required=""
+          ></textarea>
+          <div class="text-lg-center">
+            <button
+              type="submit"
+              class="btn btn-primary btn-style mt-lg-5 mt-4"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /contact1 -->{% endblock %} {% if msg %}
+<script>
+  alert("{{msg}}");
+</script>
+{% endif %}

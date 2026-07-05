@@ -1,0 +1,23 @@
+{% extends "concrebase.html" %} {% block content %}
+<div style="margin: 100px">
+  <h1 class="text-center text-dark">PAYMENTS</h1>
+  <table class="table table-hover table-striped table-dark">
+    <tr>
+      <th>Total</th>
+      <th>Customer</th>
+      <th>My Amount</th>
+
+      <th>Date</th>
+    </tr>
+    {% for d in data %}
+    <tr>
+      <td>{{d.totamt}}</td>
+      <td style="font-size: 30px">{{d.customer.name}}</td>
+      <td>{{d.conamt}}</td>
+
+      <td>{{d.date}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

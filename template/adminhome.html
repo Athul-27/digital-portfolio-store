@@ -1,0 +1,104 @@
+{% extends "adminbase.html" %} 
+{% load static %}
+{% block content %}
+<style>
+
+    .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .square-box {
+        width: 200px;
+        height: 200px;
+        margin: 20px;
+        padding: 20px;
+        background-color: rgb(255, 255, 255);;
+        border: 3px solid #000000;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    .square-box:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    }
+
+    .box-content {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 15px;
+        font-family: 'asus', sans-serif; /* 'asus' is the name of your custom font */
+    }
+
+
+    /* @font-face rule for the custom font */
+@font-face {
+    font-family: 'asus'; /* Define your font family name */
+    src: url('/static/assets/webfonts/asus.ttf') format('woff2'), /* Path to your font file */
+         url('/static/assets/webfonts/asus.ttf') format('woff'); /* Provide multiple formats for cross-browser compatibility */
+    font-weight: normal; /* Specify font weight if applicable */
+    font-style: normal; /* Specify font style if applicable */
+}
+    /* Adjust the image size */
+    .box-content img {
+        width: 75px;
+        height: 75px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="square-box">
+        <div class="box-content">
+            <img src="{% static 'img/customer.png' %}" alt="Customer Icon">
+            <h5>Customers</h5>
+            <p>{{ num_customers }}</p>
+        </div>
+    </div>
+    <div class="square-box">    
+        <div class="box-content">
+            <img src="{% static 'img/content.png' %}" alt="Content Creator Icon">
+            <h5>Content Creators</h5>
+            <p>{{ num_content_creators }}</p>
+        </div>
+    </div>
+    <div class="square-box">
+        <div class="box-content">
+            <img src="{% static 'img/art.png' %}" alt="Makeup Professional Icon">
+            <h5>Makeup Professionals</h5>
+            <p>{{ num_makeup_professionals }}</p>
+        </div>
+    </div>
+    <div class="square-box">
+        <div class="box-content">
+            <img src="{% static 'img/photo.png' %}" alt="Photographer Icon">
+            <h5>Photographers</h5>
+            <p>{{ num_photos }}</p>
+        </div>
+    </div>
+    <div class="square-box">
+        <div class="box-content">
+            <img src="{% static 'img/porticon.png' %}" alt="Portfolio Icon">
+            <h5>Portfolios</h5>
+            <p>{{ num_portfolios }}</p>
+        </div>
+    </div>
+    <div class="square-box">
+        <div class="box-content">
+            <img src="{% static 'img/feedback.png' %}" alt="Feedback Icon">
+            <h5>Feedback</h5>
+            <p>{{ num_feedbacks }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

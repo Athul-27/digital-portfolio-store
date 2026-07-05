@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Admin Home</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="../static/img/favicon.png" rel="icon" />
+    <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="../static/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="../static/css/style.css" rel="stylesheet" />
+
+    <!-- Include Font Awesome CSS file from a CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');  
+      
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(222, 235, 249);
+        }
+
+        
+        #header {
+            background-image: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0));
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 1300px;
+            height: 40px;
+          
+        }
+
+        #sidebar h1 {
+            font-size: 36px;
+            margin-top: 0%;
+            font-family: "Anta", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+        }
+
+        #sidebar {
+            background-image: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0));
+            color: #fff;
+            width: 220px;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        #content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        ul.navbar-nav {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .navbar-nav .nav-item {
+            margin-bottom: 10px;
+        }
+
+        .navbar-nav .nav-item a {
+          font-weight: bold;
+            color: #000000;
+            background-color: aliceblue ;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: 0.3s;
+            border-radius: 10px;
+        }
+
+        .navbar-nav .nav-item a:hover {
+            background-color: rgb(197, 215, 233);
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio Store</title>
+    <!-- Google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="../static/assets/css/style-starter.css">
+</head>
+<body>
+    <div id="header">
+        
+    </div>
+    <div id="sidebar">
+      <h1 id="adminPanelHeading">Admin Panel</h1>
+        <ul class="navbar-nav ms-lg-auto align-items-center">
+            <li class="nav-item">
+                <a class="nav-link" href="adminhome">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/adminvPublic">Customer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/adminphoto">Photographers</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/adminconcre">Content Creators</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/adminmakeup">Makeup Artists</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/adminportfolio">Portfolio</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/adminfeedback">Feedback</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/login" id="logout">LogOut</a>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        {% block content %} {% endblock %}
+    </div>
+    
+    <!-- JavaScript to prevent going back to the previous page after logout -->
+    <script>
+        document.getElementById('logout').addEventListener('click', function(event) {
+            // Prevent the default behavior of the link
+            event.preventDefault();
+            
+            // Display a confirmation dialog
+            var logoutConfirmed = confirm('Are you sure you want to logout?');
+            
+            // If user confirms logout, proceed with logout action
+            if (logoutConfirmed) {
+                // Perform logout action (e.g., redirect to logout page)
+                window.location.href = this.getAttribute('href');
+            }
+        });
+    </script>
+    
+    <!-- Your existing scripts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data1 = parseInt(`{{sum}}`);
+            var data2 = parseInt(`{{mSum}}`);
+            var data3 = parseInt(`{{count}}`);
+
+            // Set Data
+            const data = google.visualization.arrayToDataTable([
+                ['stats', 'stats'],
+                ['Total Earnings', data1],
+                ['Month Earning', data2],
+                ['Total Payments', data3],
+            ]);
+
+            // Set Options
+            const options = {
+                title: 'Earnings'
+            };
+
+            // Draw
+            const chart = new google.visualization.BarChart(document.getElementById('myChart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <!-- Messages display script -->
+    {% if messages %}
+        {% for msg in messages %}
+            <script>alert("{{msg}}")</script>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

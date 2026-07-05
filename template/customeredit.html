@@ -1,0 +1,133 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<!-- update form -->
+<section class="w3l-contacts-12">
+  <div class="contact-top pt-5">
+    <div class="container py-lg-5 py-2">
+      <div class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4">
+        <h3 class="w3l-title-main">Update Customer Details</h3>
+      </div>
+      <div class="d-grid cont-main-top">
+        <!-- update form -->
+        <div class="contacts12-main">
+          <form method="post" class="main-input">
+            {% csrf_token %}
+            <div class="top-inputs d-grid">
+              <input
+                type="text"
+                placeholder="Name"
+                name="txtName"
+                id="w3lName"
+                value="{{ customer.name }}"
+                required=""
+              />
+              <input
+                type="text"
+                name="txtLname"
+                placeholder="Last Name"
+                id="w3lSender"
+                value="{{ customer.last_name }}"
+                required=""
+              />
+            </div>
+            <div class="top-inputs d-grid">
+              <input
+                type="date"
+                placeholder="Date of Birth"
+                name="dob"
+                id="w3lName"
+                value="{{ customer.dob }}"
+                required=""
+              />
+              <input
+                type="email"
+                name="txtEmail"
+                placeholder="Email"
+                id="w3lSender"
+                value="{{ customer.email }}"
+                required=""
+              />
+            </div>
+            <div class="top-inputs d-grid">
+              <input
+                type="text"
+                placeholder="State"
+                name="state"
+                id="w3lName"
+                value="{{ customer.state }}"
+                required=""
+              />
+              <input
+                type="text"
+                name="district"
+                placeholder="District"
+                id="w3lSender"
+                value="{{ customer.district }}"
+                required=""
+              />
+            </div>
+            <div class="top-inputs d-grid">
+              <input
+                type="text"
+                placeholder="Pin Code"
+                name="pin"
+                id="w3lName"
+                value="{{ customer.pin }}"
+                required=""
+              />
+              <input
+                type="text"
+                name="houseno"
+                placeholder="House No"
+                id="w3lSender"
+                value="{{ customer.house_no }}"
+                required=""
+              />
+            </div>
+            <div class="top-inputs d-grid">
+              <select name="gender" class="form-control" id="">
+                <option value="Male" {% if customer.gender == 'Male' %} selected {% endif %}>Male</option>
+                <option value="Female" {% if customer.gender == 'Female' %} selected {% endif %}>Female</option>
+                <option value="Other" {% if customer.gender == 'Other' %} selected {% endif %}>Other</option>
+              </select>
+              <input
+                type="text"
+                placeholder="Phone Number"
+                name="txtContact"
+                id="w3lName"
+                value="{{ customer.phone_number }}"
+                required=""
+              />
+            </div>
+            <div class="top-inputs d-grid">
+              <input
+                type="password"
+                name="txtPassword"
+                placeholder="Password"
+                id="w3lSender"
+                required=""
+              />
+            </div>
+
+            <textarea
+              placeholder="Address"
+              name="txtAddress"
+              id="w3lMessage"
+              required=""
+            >{{ customer.address }}</textarea>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary btn-style">
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- //update form -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- //contact -->
+
+{% endblock %}

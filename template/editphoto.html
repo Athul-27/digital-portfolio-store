@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographer Edit</title>
+    <link rel="stylesheet" href="../static/assets/css/style-liberty.css" />
+
+
+    <style>
+        /* CSS for form container */
+        .form-container {
+            background: transparent;
+            padding: 50px; /* Add padding around the form */
+            border-radius: 15px; /* Add border radius for rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+            display: flex; /* Use flexbox layout */
+            flex-direction: column; /* Arrange items vertically */
+            align-items: center; /* Center align items horizontally */
+            width: 80%;
+            margin-left: 98px;
+            backdrop-filter: blur(9px);
+            color: #fff;
+
+        }
+
+
+        .top-inputs select {
+            background: var(--bg-grey);
+            width: 360px; /* Make inputs fill the container width */
+            margin-bottom: 10px; /* Add space between inputs */
+            padding: 17px; /* Add padding inside inputs (increased from 10px to 15px) */
+            border: 2px solid #000000; /* Add border */
+            border-radius: 7px; /* Add border radius */
+            font-size: 16px; /* Set font size */
+        }
+
+
+        /* Style for form inputs */
+        .top-inputs input {
+            width: 620px; /* Make inputs fill the container width */
+            margin-bottom: 10px; /* Add space between inputs */
+            padding: 26px; /* Add padding inside inputs (increased from 10px to 15px) */
+            border: 2px solid #000000; /* Add border */
+            border-radius: 7px; /* Add border radius */
+            font-size: 16px; /* Set font size */
+        }
+
+        /* Style for submit button */
+        .text-end button {
+            background-color: #025B4D; /* Set button background color */
+            color: #fff; /* Set button text color */
+            border: none; /* Remove button border */
+            padding: 10px 20px; /* Add padding inside button */
+            border-radius: 7px; /* Add border radius */
+            cursor: pointer; /* Add cursor pointer */
+            transition: background-color 0.3s ease; /* Add transition for smooth effect */
+            margin-right: 300px;
+            font-weight: bold;
+        }
+
+        /* Hover effect for submit button */
+        .text-end button:hover {
+            background-color: #90abca; /* Change background color on hover */
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        /* Center align the button */
+        .text-end {
+            margin-top: 20px; /* Add margin to separate from other elements */
+        }
+    </style>
+
+
+</head>
+
+<body>
+    {% extends "base.html" %} {% block content %}
+
+    <!-- contact -->
+    <section class="w3l-contacts-12">
+        <div class="contact-top pt-5">
+            <div class="container py-lg-5 py-2">
+                <!-- Add a large space between registration form and header -->
+                <div style="height: 100px;"></div>
+
+                <!-- Form Container -->
+                <div class="form-container">
+                    {% for i in photo %}
+                    <!-- Title for Photographer Updation inside the form -->
+                    <h3 class="w3l-title-main mb-4">Photographer Updation</h3>
+
+                    <div class="d-grid cont-main-top">
+                        <!-- Photographer update form -->
+                        <div class="contacts12-main">
+                            <form method="post" action="{% url 'edit_photo' %}" class="main-input">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ i.id }}">
+                                <div class="top-inputs d-grid">
+                                    <input type="text" placeholder="First Name" name="txtName" id="w3lName" required="" value="{{ i.name }}">
+                                    <input type="text" name="txtLname" placeholder="Last Name" id="w3lSender" required="" value="{{ i.lname }}">
+                                </div>
+                                <div class="top-inputs d-grid">
+                                    <input type="email" placeholder="Email" name="txtEmail" id="w3lSender" required="" value="{{ i.email }}">
+                                    <input type="text" placeholder="Contact Number" name="txtContact" id="w3lName" required="" value="{{ i.contact }}">
+                                </div>
+                                <div class="top-inputs d-grid">
+                                    <input type="date" name="dob" id="w3lName" required="" value="{{ i.dob|date:'Y-m-d' }}">
+                                    <select name="gender" id="">
+                                        <option value="" disabled>Select Gender</option>
+                                        <option value="Male" {% if i.gender == 'Male' %} selected {% endif %}>Male</option>
+                                        <option value="Female" {% if i.gender == 'Female' %} selected {% endif %}>Female</option>
+                                    </select>
+                                </div>
+                                <div class="top-inputs d-grid">
+                                    <input type="text" name="houseno" placeholder="House Number" id="w3lSender" required="" value="{{ i.houseno }}">
+                                    <input type="text" placeholder="Address" name="txtAddress" id="w3lMessage" required="" value="{{ i.address }}">
+                                </div>
+                                <div class="top-inputs d-grid">
+                                    <input type="text" placeholder="PIN Code" name="pin" id="w3lName" required="" value="{{ i.pin }}">
+                                    <input type="text" name="district" placeholder="District" id="w3lSender" required="" value="{{ i.district }}">
+                                </div>
+                                <div class="top-inputs d-grid">
+                                    <input type="text" placeholder="State" name="state" id="w3lName" required="" value="{{ i.state }}">
+                                    <input type="password" name="txtPassword" placeholder="Password" id="w3lSender" required="">
+                                </div>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary btn-style">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- // Photographer update form -->
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- //Form Container -->
+
+            </div>
+        </div>
+    </section>
+    <!-- //contact -->
+
+    {% endblock %} {% if msg %}
+    <script>
+        alert("{{msg}}");
+    </script>
+    {% endif %}
+</body>
+
+</html>

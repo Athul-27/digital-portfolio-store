@@ -1,0 +1,117 @@
+{% extends "publicBase.html" %} 
+{% block content %}
+
+<style>
+  .div{
+    border: black;
+  }
+</style>
+<!-- contact -->
+<section class="w3l-contacts-12">
+  <div class="contact-top pt-5">
+    <div class="container py-lg-5 py-2">
+      <div class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4">
+        <h3 class="w3l-title-main">
+          Portfolio Creation
+        </h3>
+      </div>
+      <div class="d-grid cont-main-top">
+        <!-- contact form -->
+
+
+        <div class="contacts12-main">
+          <form method="post" class="main-input" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Personal Information -->
+            <div class="top-inputs d-grid">
+              <input
+                type="text"
+                placeholder="Name"
+                name="name"
+                id="w3lName"
+                required=""
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                required=""
+              />
+            </div>
+            <div class="top-inputs d-grid">
+              <input
+                type="text"
+                placeholder="Contact"
+                name="contact"
+                required=""
+              />
+              <input
+                type="file"
+                placeholder="Profile Picture"
+                name="pic"
+                required=""
+              />
+            </div>
+            <div class="top-inputs d-grid">
+              <input
+                type="text"
+                placeholder="Professional Title"
+                name="p_title"
+                required=""
+              />
+              <input
+                type="date"
+                placeholder="Last Date for Portfolio Submission"
+                name="ldate"
+                required=""
+              />
+            </div>
+            <div class="top-inputs d-grid">
+              <select class="form-control" name="photoid" id="">
+                <option value="" hidden selected>Choose Photographer</option>
+                {% for p in photo %}
+                <option value="{{p.id}}">{{p.name}}</option>
+                {% endfor %}
+              </select>
+              <select class="form-control" name="makeupid" id="">
+                <option value="" hidden selected>Choose Makeup Artist</option>
+                {% for m in makeup %}
+                <option value="{{m.id}}">{{m.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="top-inputs d-grid"> 
+              <select class="form-control" name="concreid" id="">
+                <option value="" hidden selected>Choose Content Creator</option>
+                {% for c in content %}
+                <option value="{{c.id}}">{{c.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+              <textarea
+                placeholder="A bit about me "
+                name="bio"
+                required=""
+              ></textarea>            
+              <textarea
+                placeholder="Description"
+                name="desc"
+                id="w3lMessage"
+                required=""
+              ></textarea>
+            <div class="text-end">
+              <button type="submit" style="margin-right: 280px;" class="btn btn-primary btn-style">
+                Submit Now
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- //contact form -->
+      </div>
+    </div>
+    <!-- map -->
+    <!-- //map -->
+  </div>
+</section>
+<!-- //contact -->
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "staffBase.html" %} {% block content %}
+<style></style>
+<div style="margin: 100px">
+  <h1 class="text-center text-dark">My WORKS</h1><br>
+  <table class="table table-striped table-hover table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Customer</th>
+      <th>Last_date</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Photographer</th>
+      <th>Makeup</th>
+      <th>Progress</th>
+    </tr>
+    {% for p in ports %}
+    <tr>
+      <td style="font-weight: bold;">{{p.name}}</td>
+      <td>{{p.userid.name}}</td>
+      <td>{{p.l_date}}</td>
+      <td>{{p.desc}}</td>
+      <td>{{p.price}}</td>
+      <td>{{p.photo.name}}</td>
+      <td>{{p.makeup.name}}</td>
+      <td>0<progress id="progress" value="{{p.progress}}" max="100"></progress>100</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

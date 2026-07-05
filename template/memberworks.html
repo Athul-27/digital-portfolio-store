@@ -1,0 +1,213 @@
+{% extends "publicBase.html" %}
+{% block content %}
+
+
+<style>
+    /* Your existing CSS styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container1 {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Table Styles */
+    .styled-table {
+        width: 70%;
+        margin-top: 20px;
+        font-size: 0.9em;
+        font-family: cursive;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        margin-left: 150px;
+    }
+
+    .styled-table td {
+        padding: 12px;
+        border: 1px solid #000;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .styled-table th {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        padding: 12px;
+        border: 1px solid #000;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .styled-table tbody tr:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+
+    /* Button Styles */
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #218838;
+    }
+
+    /* Heading Styles */
+    .table-heading {
+        display: none; /* Hide by default */
+        margin-top: 40px;
+        color: #000;
+        font-size: 2em;
+        text-align: center;
+    }
+
+    .button a {
+    color: white; /* Set the color of the anchor text to white */
+    text-decoration: none; /* Remove underline */
+}
+
+.button a:hover {
+    color: white; /* Change color on hover if needed */
+}
+
+</style>
+
+<div class="container1">
+
+<!-- Buttons for selecting tables -->
+<button class="button" onclick="showTable('photographers')">Photographers</button>
+<button class="button" onclick="showTable('makeup')">Makeup Professionals</button>
+<button class="button" onclick="showTable('content')">Content Creators</button>
+
+
+<!-- Photographers Table -->
+<h2 class="table-heading" id="photographers-heading" style="display: block;">Photographers</h2>
+<table class="styled-table" id="photographers" style="display: table;">
+
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in photo %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>
+                <button class="button">
+                    <a href="{% url 'photoworkss' id=p.id %}">View Works</a>
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+    <!-- Makeup Professionals Table -->
+    <h2 class="table-heading" id="makeup-heading">Makeup Professionals</h2>
+    <table class="styled-table" id="makeup" style="display: none;"> 
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in makeup %}
+            <tr>
+                <td>{{ m.id }}</td>
+                <td>{{ m.name }}</td>
+                <td>
+                    <button class="button">
+                        <a href="{% url 'makeworks' id=m.id %}">View Works</a>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+    <!-- Content Creators Table -->
+    <h2 class="table-heading" id="content-heading">Content Creators</h2>
+    <table class="styled-table" id="content" style="display: none;">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in contents %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.name }}</td>
+                <td>
+                    <button class="button">
+                        <a href="{% url 'contentworks' id=c.id %}">View Works</a>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    // Function to show the selected table and heading, and hide others
+    function showTable(tableId) {
+        var tables = document.querySelectorAll('.styled-table');
+        var headings = document.querySelectorAll('.table-heading');
+
+        tables.forEach(function(table) {
+            if (table.id === tableId) {
+                table.style.display = 'table';
+            } else {
+                table.style.display = 'none';
+            }
+        });
+
+        headings.forEach(function(heading) {
+            if (heading.id === tableId + '-heading') {
+                heading.style.display = 'block';
+            } else {
+                heading.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+
+
+{% endblock %}

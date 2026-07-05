@@ -1,0 +1,29 @@
+{% extends "publicBase.html" %} {% block content %}
+<div style="margin: 100px">
+  <h1 class="text-center text-dark">PAYMENTS</h1>
+  <table class="table table-hover table-striped table-dark">
+    <tr>
+      <th>Total</th>
+      <th>Content Creator</th>
+      <th>Amount</th>
+      <th>Photographer</th>
+      <th>Amount</th>
+      <th>Makeup</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+    {% for d in data %}
+    <tr>
+      <td>{{d.totamt}}Rs</td>
+      <td>{{d.content.name}}</td>
+      <td>{{d.conamt}}Rs</td>
+      <td>{{d.photo.name}}</td>
+      <td>{{d.photoamt}}Rs</td>
+      <td>{{d.makeup.name}}</td>
+      <td>{{d.makeupamt}}Rs</td>
+      <td>{{d.date}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

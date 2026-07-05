@@ -1,0 +1,42 @@
+{% extends "publicBase.html" %} {% block content %}
+
+<!-- contact -->
+<section class="w3l-contacts-12">
+  <div class="contact-top pt-5">
+    <div class="container py-lg-5 py-2">
+      <div class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4">
+        <h3 class="w3l-title-main">Reason</h3>
+      </div>
+      <div class="d-grid cont-main-top">
+        <!-- contact form -->
+        <div class="contacts12-main">
+          <form method="post" class="main-input">
+            {% csrf_token %}
+
+            <textarea
+              placeholder="Reason for the Rejection"
+              name="reason"
+              id="w3lMessage"
+              required=""
+            ></textarea>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary btn-style">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- //contact form -->
+      </div>
+    </div>
+    <!-- map -->
+
+    <!-- //map -->
+  </div>
+</section>
+<!-- //contact -->
+{% endblock %} {% if msg %}
+<script>
+  alert("{{msg}}");
+</script>
+{% endif %}

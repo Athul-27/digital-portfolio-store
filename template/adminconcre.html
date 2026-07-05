@@ -1,0 +1,633 @@
+{% extends "adminbase.html" %}
+
+{% block content %}
+<style>
+  /* Custom table styles */
+  .table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .table th {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .table tbody tr:nth-child(odd) {
+    background-color: rgb(197, 215, 233);
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .table tbody tr:hover {
+    background-color: rgb(190, 188, 188);
+  }
+
+  .table tbody td {
+    vertical-align: middle;
+  }
+
+    .tablee {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .tablee th,
+    .tablee td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .tablee th {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .tablee tbody tr:nth-child(odd) {
+      background-color: rgb(197, 215, 233);
+    }
+
+    .tablee tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .tablee tbody tr:hover {
+      background-color: rgb(190, 188, 188);
+    }
+
+    .tablee tbody td {
+      vertical-align: middle;
+    }
+
+  
+
+  /* Button styles */
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    text-decoration: none; /* Remove underline */
+
+  }
+
+  .btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #000000;
+  }
+
+  .btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+
+  .btn:hover {
+    color: #fff;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+
+  .btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+  }
+
+  /* Positioning for button container */
+  #buttonContainer {
+    position: relative;
+    text-align: right;
+    margin-top: 10px; /* Adjusted margin-top value */
+    margin-right: 20px;
+  }
+
+  /* Add Staff button styling */
+  .add-staff-button {
+    background-color: #000000; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove button border */
+    padding: 10px 20px; /* Add padding inside button */
+    border-radius: 8px; /* Add border radius */
+    cursor: pointer; /* Add cursor pointer */
+    float: right; /* Float the button to the right */
+    margin-top: 40px; /* Add margin from the top */
+    text-decoration: none; /* Remove underline */
+
+  }
+
+  .add-staff-button:hover {
+    background-color: #9d969b; /* Change background color on hover */
+  }
+
+
+  /* PDF, Excel, and Print icon styling */
+  .pdf-icon, .excel-icon, .print-icon {
+    cursor: pointer;
+    width: 35px; /* Set the width of the icon */
+    height: 35px; /* Set the height of the icon */
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+
+
+  
+  .but{
+  background-color: transparent;
+  border: none;
+
+}
+
+.but:hover,.but:active{
+  background-color: transparent;
+}
+
+.edit-icon {
+    width: 32px; /* Adjust the width to your desired size */
+    height: 32px; /* Adjust the height to your desired size */
+}
+
+
+</style>
+
+<div style="margin: 40px">
+  <div id="buttonContainer">
+    <button class="btn btn-info" id="toggleButton">Approved</button>
+  </div>
+  <div id="requestedTableDiv">
+    <h1 class="text-center text-dark" id="headerText">Requested Content Creators</h1>
+    <table id="requestedTable" class="table table-hover table-primary table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Contact</th>
+        <th>Address</th>
+        <th>Action</th>
+        
+      </tr>
+      {% for d in concredeact %}
+      <tr>
+        <td>{{d.name}}</td>
+        <td>{{d.email}}</td>
+        <td>{{ d.dob|date:"d/m/y" }}</td>
+        <td>{{d.gender}}</td>
+        <td>{{d.contact}}</td>
+        <td>{{d.address}}</td>
+        {% if d.user.is_active is False %}
+        <td>
+          <a href="/cApprove?id={{d.user.id}}" class="btn btn-success">Approve</a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div id="approvedTableDiv" style="display: none;">
+
+
+
+
+<!--=====================================================================================-->
+<!--APPROVED  CONTENT CREATORS TABLE -->
+<div class="container">
+    <!-- Add Staff Button -->
+    <a href="conCreReg" class="add-staff-button">Add</a>    
+    <!-- PDF Icon -->
+    <a href="#" id="exportToPDF" onclick="exportToPDF()" class="btttn"><button class="but" name="login" style="width: 21vh;"><img src="static/img/pdf.png" alt="PDF Icon" class="pdf-icon"></button></a>
+    <!-- Excel Icon -->
+    <img src="static/img/excel.png" alt="Excel Icon" class="excel-icon">
+    <!-- Print Button -->
+    <a href="#" id="printPDF" onclick="printAndClose()" class="bttttn"><button class="but" name="login" style="width: 21vh;"> <img src="static/img/print.png" alt="Print Icon" class="print-icon"></button></a>
+</div>
+
+
+    <h1 class="text-center text-dark" id="approvedHeaderText">Approved Content Creators</h1>
+
+    <div class="pdfouter"> 
+    <table id="approvedTable" class="tablee table-hover table-primary table-striped" style="display: none;">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Contact</th>
+        <th>Address</th>
+        <th>Edit</th>
+        <th>Status</th>
+      </tr>
+      {% for d in concreact %}
+      <tr>
+        <td>{{d.name}}</td>
+        <td>{{d.email}}</td>
+        <td>{{ d.dob|date:"d/m/y" }}</td>
+        <td>{{d.gender}}</td>
+        <td>{{d.contact}}</td>
+        <td>{{d.address}}</td>
+        <td>
+          {% if d.user.is_active is True %}
+          <!-- <button><a href="editconcre/{{d.id}}" class="btn btn-info" style="margin-left: 5px;">Edit</a></button> -->
+          <a href="editconcre/{{d.id}}" class="edit-link">
+          <img src="static/img/pen.png" alt="Edit Icon" class="edit-icon">
+          </a>
+        </td>
+        <td>
+          <a href="/cReject?id={{d.user.id}}" class="btn btn-danger" style="margin-left: 5px;">Reject</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <!--....................................................-->
+
+    <table id="approvedTable" class="tablee table-hover table-primary table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Contact</th>
+        <th>Address</th>
+        <th>Edit</th>
+        <th>Status</th>
+
+      </tr>
+      {% for d in concreact %}
+      <tr>
+        <td>{{d.name}}</td>
+        <td>{{d.email}}</td>
+        <td>{{ d.dob|date:"d/m/y" }}</td>
+        <td>{{d.gender}}</td>
+        <td>{{d.contact}}</td>
+        <td>{{d.address}}</td>
+        <td>
+          {% if d.user.is_active is True %}
+          <!-- <button><a href="editconcre/{{d.id}}" class="btn btn-info" style="margin-left: 5px;">Edit</a></button> -->
+          <a href="editconcre/{{d.id}}" class="edit-link">
+            <img src="static/img/pen.png" alt="Edit Icon" class="edit-icon">
+            </a>
+        </td>
+        <td>
+          <a href="/cReject?id={{d.user.id}}" class="btn btn-danger" style="margin-left: 5px;">Reject</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+<!-- Include the jspdf library script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+  // Function to show requested content creators and hide approved content creators
+  function showRequested() {
+    document.getElementById('requestedTableDiv').style.display = 'block';
+    document.getElementById('approvedTableDiv').style.display = 'none';
+    document.getElementById('headerText').textContent = 'Requested Content Creators';
+    document.getElementById('toggleButton').textContent = 'Approved';
+  }
+
+  // Function to show approved content creators and hide requested content creators
+  function showApproved() {
+    document.getElementById('requestedTableDiv').style.display = 'none';
+    document.getElementById('approvedTableDiv').style.display = 'block';
+    document.getElementById('headerText').textContent = 'Approved Content Creators';
+    document.getElementById('toggleButton').textContent = 'Requested';
+  }
+
+  // Add event listener to toggle button
+  const toggleButton = document.getElementById('toggleButton');
+  toggleButton.addEventListener('click', function() {
+    if (toggleButton.textContent === 'Requested') {
+      showRequested();
+    } else {
+      showApproved();
+    }
+  });
+
+  // On page load, show requested content creators
+  window.addEventListener('load', function() {
+    showRequested(); // Initially show the requested content creators
+  });
+
+//PDF , PRINT, EXCEL ==================================================================
+
+// Add event listener to the Excel icon
+const excelIcon = document.querySelector('.excel-icon');
+excelIcon.addEventListener('click', function() {
+  // Initialize a new Excel workbook
+  let workbook = XLSX.utils.book_new();
+
+  // Extract table data
+  let table = document.querySelector('.tablee'); // Updated class selector
+  let tableData = [];
+  let headers = [];
+  let rows = table.querySelectorAll('tr');
+
+  // Extract headers
+  rows[0].querySelectorAll('th').forEach((header, index) => {
+    // Exclude the last column
+    if (index < rows[0].querySelectorAll('th').length - 2) {
+      headers.push(header.textContent);
+    }
+  });
+
+  console.log('Headers:', headers); // Log headers to console
+
+  // Extract row data
+  rows.forEach((row, index) => {
+    if (index !== 0) {
+      let rowData = [];
+      row.querySelectorAll('td').forEach((cell, cellIndex) => {
+        // Exclude the last column
+        if (cellIndex < row.querySelectorAll('td').length - 2) {
+          rowData.push(cell.textContent);
+        }
+      });
+      tableData.push(rowData);
+    }
+  });
+
+  console.log('Table Data:', tableData); // Log table data to console
+
+  // Convert the table data into a worksheet
+  let worksheet = XLSX.utils.aoa_to_sheet([headers, ...tableData]);
+
+  // Add the worksheet to the workbook
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Content Creator_Details');
+
+  // Save the workbook as an Excel file
+  XLSX.writeFile(workbook, 'Content Creator_details.xlsx');
+});
+
+
+//PDF.....................................................
+
+function exportToPDF() {
+    // Get the content of the table
+    var table = document.getElementById('approvedTable').cloneNode(true);
+    table.style.display = 'table';
+    // Hide the last two columns from the table for the PDF
+    var headers = table.querySelectorAll('th');
+    var lastColumnIndex = headers.length - 1;
+    var secondLastColumnIndex = headers.length - 2;
+
+    // Remove the header and cells for the last two columns
+    if (headers.length >= 2) {
+        headers[lastColumnIndex].style.display = 'none';
+        headers[secondLastColumnIndex].style.display = 'none';
+
+        var rows = table.getElementsByTagName('tr');
+        for (var j = 0; j < rows.length; j++) {
+            var cells = rows[j].getElementsByTagName('td');
+            if (cells.length >= 2) {
+                cells[lastColumnIndex].style.display = 'none';
+                cells[secondLastColumnIndex].style.display = 'none';
+            }
+        }
+    }
+    // Get today's date
+    var today = new Date();
+    var formattedDate = today.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Get the logo and tagline
+    var logoAndTagline = `
+    <div class="logo" style="height:30vh">
+        <h2 class="merriweather-bold" style="color:#FFFF00; font-size: 40px;">UI Portfolio</h2>
+        <f>Content Creators List</f><br>
+        <f>Kochi, Kerala</f><br>
+        <f>Ph: +91 8129635516 </f>                
+    </div>
+    <div class="footer">
+        <div class="date">${formattedDate}</div>
+    </div>
+    `;
+
+    // Combine the table content with the logo and tagline
+    var content = logoAndTagline + table.outerHTML;
+
+    // Style the content for the PDF
+    var styledContent = `
+    <style>
+      .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .f {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .container {
+            font-size: 17px;
+            position: relative;
+            left: 0;
+            max-width: 1500px;
+            padding-top: 25px;
+            border-radius: 10px;
+            transition: left 0.9s ease;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .header {
+            position: relative;
+            bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ffc107;
+            border-radius: 2px;
+        }
+        .header h3 {
+            padding-left: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #ccc;
+            margin: 0;
+        }
+        .table {
+            padding: 15px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td, th {
+            color: #000;
+            padding: 13px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+        th {
+            font-weight: bold;
+        }
+    </style>
+    <div class="container">${content}</div>
+    `;
+
+    // Generate and save the PDF
+    var opt = {
+        margin: 10,
+        filename: 'Photographer details.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' },
+        html2pdf: {
+            content: styledContent,
+            image: { type: 'jpeg', quality: 0.98 },
+            margin: [10, 0], // Adjust the margin for the footer
+            pagebreak: { mode: 'avoid-all' }, // Prevent page breaks in the footer
+        }
+    };
+    html2pdf().from(styledContent).set(opt).save();
+}
+
+
+
+
+
+//print function
+function printAndClose() {
+    // Get the content of the table
+    var table = document.getElementById('approvedTable').cloneNode(true);
+    table.style.display = 'table';
+
+    // Hide the last two columns from the table for the print view
+    var lastColumnIndex = table.rows[0].cells.length - 1;
+    for (var j = 0; j < table.rows.length; j++) {
+        table.rows[j].deleteCell(lastColumnIndex);
+        table.rows[j].deleteCell(lastColumnIndex - 1);
+    }
+
+    // Get today's date
+    var today = new Date();
+    var formattedDate = today.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Get the logo and tagline
+    var logoAndTagline = `
+    <div class="logo">
+        <h2 class="merriweather-bold" style="color:#FFFF00; font-size: 40px;">UI Portfolio</h2>
+        <f>Content Creators List</f><br>
+        <f>Kochi, Kerala</f><br>
+        <f>Ph: +91 8129635516 </f>
+    </div>
+    <div class="footer">
+        <div class="date">${formattedDate}</div>
+    </div>
+    `;
+
+    // Combine the table content with the logo and tagline
+    var content = logoAndTagline + table.outerHTML;
+
+    // Style the content for printing
+    var styledContent = `
+    <style>
+        body {
+            font-family: "Jost", sans-serif;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .f {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .container {
+            font-size: 17px;
+            max-width: 1500px;
+            padding-top: 25px;
+            border-radius: 10px;
+        }
+        .header {
+            display: none; /* Hide header for printing */
+        }
+        .table {
+            padding: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            color: #000;
+            padding: 13px;
+            border: 1px solid #000;
+        }
+        th {
+            color: #000;
+            border: 1px solid #000;
+            font-weight: bold;
+        }
+    </style>
+    <div class="container">${content}</div>
+    `;
+
+    // Open a new window with the styled content for printing
+    var printWindow = window.open('', '_blank');
+    printWindow.document.write(styledContent);
+    printWindow.document.close();
+
+    // Wait for the content to be loaded, then print and handle closing the window
+    printWindow.onload = function() {
+        printWindow.focus();
+        printWindow.print();
+        setTimeout(function() {
+            printWindow.close();
+            window.location.href = '#'; // Redirect back after printing
+        }, ); // Delay the redirect by 1 second (1000 milliseconds)
+    };
+}
+
+</script>
+{% endblock %}

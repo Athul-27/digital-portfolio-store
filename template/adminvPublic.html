@@ -1,0 +1,573 @@
+{% extends "adminbase.html" %}
+
+{% block content %}
+
+<style>
+  /* Custom table styles */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  .custom-table th {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+    border: #ffffff 1px solid; /* Add a thin border to each cell */
+
+  }
+  
+  .custom-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+    border: #000 1px solid; /* Add a thin border to each cell */
+
+  }
+
+  .custom-table th {
+    background-color: #000000;
+    color: #fff;
+  }
+
+  .custom-table tbody tr:nth-child(odd) {
+    background-color: white;
+  }
+
+  .custom-table tbody tr:nth-child(even) {
+    background-color: rgb(197, 215, 233);
+  }
+
+  .custom-table tbody tr:hover {
+    background-color: whitesmoke;
+  }
+
+  .custom-table tbody td button {
+    margin-left: 20px;
+  }
+
+  /* Button styles */
+
+  .edit-button {
+    background-color: #deff09; /* Default background color - Yellow */
+    color: #000000; /* Text color - Black */
+    font-weight: bold; /* Bold text */
+    border: none; /* Remove border */
+    padding: 10px 16px; /* Padding inside the button */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-right: 8px; /* Adjusted margin for button spacing */
+    outline: none; /* Remove outline on focus */
+}
+
+.edit-button:hover {
+    background-color: #ffdd59; /* Lighter background color on hover */
+    color: #000000; /* Change text color on hover */
+}
+
+.edit-button:focus {
+    box-shadow: 0 0 0 2px #ffdd59; /* Add focus outline */
+}
+
+.edit-button:active {
+    transform: translateY(1px); /* Add slight downward movement on click */
+}
+
+
+
+
+/* Button Styles */
+.active-button,
+.inactive-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.active-button {
+    background-color: green;
+    color: white;
+}
+
+.inactive-button {
+    background-color: red;
+    color: white;
+}
+
+/* Hover Styles */
+.active-button:hover,
+.inactive-button:hover {
+    background-color: #05ac3a; /* Darker green for active button */
+}
+
+/* Anchor Styles */
+.active-button a,
+.inactive-button a {
+    color: inherit; /* Inherit color from the parent button */
+    text-decoration: none; /* Remove underline */
+}
+
+.active-button a:hover,
+.inactive-button a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+
+
+
+  /* Container styling */
+  .container {
+    margin-top: 40px;
+    margin-left: 10px;
+  }
+
+  /* Heading styling */
+  .heading {
+    text-align: center;
+    color: #343a40; /* Dark text color */
+  }
+
+  /* Add Staff button styling */
+  .add-staff-button {
+    background-color: #000000; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove button border */
+    padding: 10px 20px; /* Add padding inside button */
+    border-radius: 8px; /* Add border radius */
+    cursor: pointer; /* Add cursor pointer */
+    float: right; /* Float the button to the right */
+    margin-top: -20px; /* Add margin from the top */
+  }
+
+  .add-staff-button:hover {
+    background-color: #9d969b; /* Change background color on hover */
+  }
+
+  /* PDF, Excel, and Print icon styling */
+  .pdf-icon, .excel-icon, .print-icon {
+    cursor: pointer;
+    width: 35px; /* Set the width of the icon */
+    height: 35px; /* Set the height of the icon */
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+
+  .status-button {
+    background-color: #2ecc71; /* Default background color - Green */
+    color: #ffffff; /* Text color - White */
+    font-weight: bold; /* Bold text */
+    border: none; /* Remove border */
+    padding: 12px 20px; /* Padding inside the button */
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    text-decoration: none; /* Remove default link underline */
+    display: inline-block; /* Make the button behave like a block element */
+    outline: none; /* Remove outline on focus */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle box shadow */
+}
+
+.status-button:hover {
+    background-color: #218c74; /* Darker background color on hover */
+}
+
+.status-button:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on focus */
+}
+
+.status-button:active {
+    transform: translateY(1px); /* Add slight downward movement on click */
+}
+
+
+.but{
+  background-color: transparent;
+  border: none;
+
+}
+
+.but:hover,.but:active{
+  background-color: transparent;
+}
+
+.edit-icon {
+    width: 32px; /* Adjust the width to your desired size */
+    height: 32px; /* Adjust the height to your desired size */
+}
+
+</style>
+
+<div class="container">
+  <!-- Add Staff Button -->
+  <!-- <a href="registration" class="add-staff-button">Add Staff</a> -->
+
+  <!-- PDF Icon -->
+  <a href="#" id="exportToPDF" onclick="exportToPDF()" class="btttn"><button class="but" name="login" style="width: 21vh;"><img src="static/img/pdf.png" alt="PDF Icon" class="pdf-icon"></button></a>
+  <!-- Excel Icon -->
+  <img src="static/img/excel.png" alt="Excel Icon" class="excel-icon">
+  <!-- Print Button -->
+  <a href="#" id="printPDF" onclick="printAndClose()" class="bttttn"><button class="but" name="login" style="width: 21vh;"> <img src="static/img/print.png" alt="Print Icon" class="print-icon"></button></a>
+</div>
+
+
+<h1 class="heading">Customer</h1>
+
+<div class="pdfouter">
+    <table class="table custom-table" id='staffTable' style="display: none;">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>State</th>
+            <th>Edit</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in cust %}
+        <tr>
+            <td>{{ d.name }}</td>
+            <td>{{ d.email }}</td>
+            <td>{{ d.dob|date:"d/m/Y" }}</td> <!-- Note the uppercase "Y" for the year -->
+            <td>{{ d.gender }}</td>
+            <td>{{ d.contact }}</td>
+            <td>{{ d.address }}</td>
+            <td>{{ d.state }}</td>
+            <td>
+                <a href="editregistration/{{d.id}}" class="edit-link">
+                    <img src="static/img/pen.png" alt="Edit Icon" class="edit-icon">
+                </a> 
+            </td>
+            <td>
+                {% if d.status %}
+                    <button class="status-button">
+                        <a href="{% url 'update_status' id=d.id %}">Deactivate</a>
+                    </button>
+                {% else %}
+                    <button class="status-button">
+                        <a href="{% url 'reactivate_user' id=d.id %}">Activate</a>
+                    </button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!--- Pagination ......................................................................---->
+<table class="table custom-table">
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>DOB</th>
+          <th>Gender</th>
+          <th>Contact</th>
+          <th>Address</th>
+          <th>State</th>
+          <th>Edit</th>
+          <th>Status</th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for d in cust %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+          <td>{{ d.name }}</td>
+          <td>{{ d.email }}</td>
+          <td>{{ d.dob|date:"d/m/Y" }}</td> <!-- Note the uppercase "Y" for the year -->
+          <td>{{ d.gender }}</td>
+          <td>{{ d.contact }}</td>
+          <td>{{ d.address }}</td>
+          <td>{{ d.state }}</td>
+          <td>
+            <a href="editregistration/{{d.id}}" class="edit-link">
+                <img src="static/img/pen.png" alt="Edit Icon" class="edit-icon">
+            </a>                        
+          </td>
+          <td>
+              {% if d.status %}
+                  <button class="active-button">
+                      <a href="{% url 'update_status' id=d.id %}">Deactivate</a>
+                  </button>
+              {% else %}
+                  <button class="inactive-button">
+                      <a href="{% url 'reactivate_user' id=d.id %}">Activate</a>
+                  </button>
+              {% endif %}
+          </td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+<!-- Include the jsPDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
+<script>
+
+ // Add event listener to the Excel icon
+const excelIcon = document.querySelector('.excel-icon');
+excelIcon.addEventListener('click', function() {
+  // Initialize a new Excel workbook
+  let workbook = XLSX.utils.book_new();
+
+  // Extract table data
+  let table = document.querySelector('.custom-table');
+  let tableData = [];
+  let headers = [];
+  let rows = table.querySelectorAll('tr');
+
+  // Extract headers excluding "Action" and "Status"
+  rows[0].querySelectorAll('th').forEach(header => {
+    if (header.textContent !== 'Action' && header.textContent !== 'Status') {
+      headers.push(header.textContent);
+    }
+  });
+
+  // Extract row data excluding the last two columns
+  rows.forEach((row, index) => {
+    if (index !== 0) {
+      let rowData = [];
+      let cells = row.querySelectorAll('td');
+      cells.forEach((cell, cellIndex) => {
+        // Only add data if it's not from the last two columns
+        if (cellIndex < headers.length) {
+          rowData.push(cell.textContent);
+        }
+      });
+      tableData.push(rowData);
+    }
+  });
+
+  // Convert the table data into a worksheet
+  let worksheet = XLSX.utils.aoa_to_sheet([headers, ...tableData]);
+
+  // Add the worksheet to the workbook
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Customer_Details');
+
+  // Save the workbook as an Excel file
+  XLSX.writeFile(workbook, 'customer_details.xlsx');
+});
+
+
+
+    
+//PDF...................
+function exportToPDF() {
+    // Get the content of the table
+    var table = document.getElementById('staffTable').cloneNode(true);
+    table.style.display = 'table';
+
+    // Hide the last two columns from the table for the PDF
+    var headers = table.querySelectorAll('th');
+    var lastColumnIndex = headers.length - 1;
+    var secondLastColumnIndex = headers.length - 2;
+
+    // Remove the header and cells for the last two columns
+    if (headers.length >= 2) {
+        headers[lastColumnIndex].style.display = 'none';
+        headers[secondLastColumnIndex].style.display = 'none';
+
+        var rows = table.getElementsByTagName('tr');
+        for (var j = 0; j < rows.length; j++) {
+            var cells = rows[j].getElementsByTagName('td');
+            if (cells.length >= 2) {
+                cells[lastColumnIndex].style.display = 'none';
+                cells[secondLastColumnIndex].style.display = 'none';
+            }
+        }
+    }
+
+    // Get today's date
+    var today = new Date();
+    var formattedDate = today.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Get the logo and tagline
+    var logoAndTagline = `
+    <div class="logo">
+        <h2 class="merriweather-bold" style="color:#FFFF00; font-size: 40px;">UI Portfolio</h2>
+        <f>Customers List</f><br>
+        <f>Kochi, Kerala</f><br>
+        <f>Ph: +91 8129635516 </f>
+    </div>
+    <div class="footer">
+        <div class="date">${formattedDate}</div>
+    </div>
+    `;
+
+    // Combine the table content with the logo and tagline
+    var content = logoAndTagline + table.outerHTML;
+
+    // Style the content for the PDF
+    var styledContent = `
+    <style>
+        body {
+            font-family: "Jost", sans-serif;
+            border: 2px solid #000; /* Add border style to cover the entire page */
+            padding: 15px; /* Add padding */
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .f {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            color: #000;
+            padding: 13px;
+            border: 1px solid #000;
+        }
+        th {
+            color: #000;
+            border: 1px solid #000;
+            font-weight: bold;
+        }
+    </style>
+    ${content}
+    `;
+
+    // Generate and save the PDF
+    var opt = {
+        margin: 10,
+        filename: 'Customer details.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' },
+        html2pdf: {
+            content: styledContent,
+            image: { type: 'jpeg', quality: 0.98 },
+            margin: [10, 0], // Adjust the margin for the footer
+            pagebreak: { mode: 'avoid-all' }, // Prevent page breaks in the footer
+        }
+    };
+    html2pdf().from(styledContent).set(opt).save();
+}
+
+
+
+
+//print function...................................................
+function printAndClose() {
+    // Get the content of the table
+    var table = document.getElementById('staffTable').cloneNode(true);
+    table.style.display = 'table';
+
+    // Hide the last two columns from the table for the print view
+    var lastColumnIndex = table.rows[0].cells.length - 1;
+    for (var j = 0; j < table.rows.length; j++) {
+        table.rows[j].deleteCell(lastColumnIndex);
+        table.rows[j].deleteCell(lastColumnIndex - 1);
+    }
+
+    // Get today's date
+    var today = new Date();
+    var formattedDate = today.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Get the logo and tagline
+    var logoAndTagline = `
+    <div class="logo">
+        <h2 class="merriweather-bold" style="color:#FFFF00; font-size: 40px;">UI Portfolio</h2>
+        <f>Customers List</f><br>
+        <f>Kochi, Kerala</f><br>
+        <f>Ph: +91 8129635516 </f>
+    </div>
+    <div class="footer">
+        <div class="date">${formattedDate}</div>
+    </div>
+    `;
+
+    // Combine the table content with the logo and tagline
+    var content = logoAndTagline + table.outerHTML;
+
+    // Style the content for printing
+    var styledContent = `
+    <style>
+        body {
+            font-family: "Jost", sans-serif;
+            border: 2px solid #000; /* Add border style to cover the entire page */
+            padding: 15px; /* Add padding */
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .f {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            color: #000;
+            padding: 13px;
+            border: 1px solid #000;
+        }
+        th {
+            color: #000;
+            border: 1px solid #000;
+            font-weight: bold;
+        }
+    </style>
+    ${content}
+    `;
+
+    // Open a new window with the styled content for printing
+    var printWindow = window.open('', '_blank');
+    printWindow.document.write(styledContent);
+    printWindow.document.close();
+
+    // Wait for the content to be loaded, then print and handle closing the window
+    printWindow.onload = function() {
+        printWindow.focus();
+        printWindow.print();
+        setTimeout(function() {
+            printWindow.close();
+            window.location.href = 'adminvPublic'; // Redirect back after printing
+        }, 500); // Delay the redirect by 1 second (1000 milliseconds)
+    };
+}
+
+
+
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "publicBase.html" %} 
+{% block content %}
+<div style="margin: 100px">
+  <h1 class="text-dark text-center">Portfolio Progress</h1><br>
+  <table class="table table-hover table-striped table-dark" style="width: max-content;">
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Content Creator</th>
+      <th>Photographer</th>
+      <th>Makeup</th>
+      <th>Progress</th>
+      <th>Status</th>
+      <th>Last Date</th>
+      <th>Sample</th>
+      <th>Action</th>
+      <th>Feedback</th>
+    </tr>
+    {% for p in ports %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.concre.name}}</td>
+      <td>{{p.photo.name}}</td>
+      <td>{{p.makeup.name}}</td>
+      <td>0<progress id="progress" value="{{p.progress}}" max="100"></progress>100</td>
+      <td>{{p.status}}</td>
+      <td>{{p.l_date}}</td>
+      {% if p.status == "Complete" %}
+      <td><img src="../static/media/{{p.file}}" height="200" width="200" alt="" /></td>
+      <td>
+        <a href="/Userpay?id={{p.id}}" class="btn btn-success">Pay</a>
+        <a href="/rejectPort?id={{p.id}}" class="btn btn-danger">Reject</a>
+      </td>
+      <td></td> <!-- Empty column for Feedback -->
+      {% elif p.status == "Paid" %}
+      <td></td> <!-- Empty column for sample-->
+      <td><a href="../static/media/{{p.file}}" download="">Download</a></td>
+      <td>
+        <form method="post">
+          {% csrf_token %}
+          <input
+            placeholder="Feedback"
+            type="text"
+            name="feed"
+            class="form-control"
+          />
+          <input
+            type="text"
+            name="pid"
+            hidden
+            value="{{p.id}}"
+            class="form-control"
+          />
+          <input type="submit" class="btn btn-success" />
+        </form>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

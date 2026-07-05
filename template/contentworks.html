@@ -1,0 +1,211 @@
+{% load static %}
+{% block content %}
+
+<style>
+    /* Your existing CSS styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Header Styles */
+    .header {
+        background-color: #000;
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 35px;
+        font-weight: bold;
+        font-family: 'Raleway', sans-serif;
+    }
+
+    .header .right-words ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .header .right-words ul li {
+        margin-right: 20px;
+    }
+
+    .header .right-words ul li:last-child {
+        margin-right: 0;
+    }
+
+    .header .right-words ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .header .right-words ul li a:hover {
+        color: #025C4E; /* Change color on hover */
+    }
+
+    /* Table Styles */
+    .styled-table {
+        width: 90%;
+        margin-top: 20px;
+        font-size: 0.9em;
+        font-family: cursive;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        margin-left: 80px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px;
+        border: 1px solid #000;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .styled-table th {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        padding: 12px;
+        border: 1px solid #000;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .styled-table tbody tr:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+
+    /* Button Styles */
+    .button-download {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .button-download:hover {
+        background-color: #218838;
+    }
+
+    /* Heading Styles */
+    .table-heading {
+        display: none; /* Hide by default */
+        margin-top: 40px;
+        color: #000;
+        font-size: 2em;
+        text-align: center;
+    }
+
+    .container {
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
+
+    .h2 {
+        font-family: 'Raleway', sans-serif;
+        margin-left: 600px;
+        font-size: 40px;
+    }
+
+    /* Logout Button Styles */
+.btn-logout {
+    background-color: #025D4F; /* Green background color */
+    color: #fff; /* White text color */
+    padding: 8px 16px; /* Adjust padding as needed */
+    border-radius: 15px; /* Rounded border radius */
+    text-decoration: none;
+}
+
+.btn-logout:hover {
+    background-color: #c90707; /* Darker green color on hover */
+}
+
+</style>
+
+<div class="header">
+    <h1 class="h1">UI Portfolio</h1>
+
+    <div class="right-words">
+        <ul>
+            <li class="nav-item">
+                <a class="nav-link" href="/publichome">Home <span></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/memberworks">WORKS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/createPortfolio">Create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/viewProgress">Progress</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/viewPPayments">Payments</a>
+            </li>
+            <!--/right-btn-->
+            <div class="header-btn mx-2">
+                <a class="btn btn-style btn-primary btn-logout" href="/login">LogOut</a>
+            </div>
+            <!--/right-btn-->
+        </ul>
+    </div>
+</div>
+
+<!-- Assuming the 'share' attribute is added to the Portfolio model -->
+
+<div class="container">
+    <h2 class="h2">Works</h2>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Customer</th>
+                <th>Portfolio</th>
+                <th>Photographer</th>
+                <th>Makeup Professional</th>
+                <th>Total Price</th>
+                <!-- <th>Share</th> -->
+                <!-- <th>File</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for portfolio in portfolios %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ portfolio.userid.name }}</td>
+                    <td>{{ portfolio.name }}</td>
+                    <td>{{ portfolio.photo.name }}</td>
+                    <td>{{ portfolio.makeup.name }}</td>
+                    <td>{{ portfolio.price }}</td>
+                    <!-- <td>{{ portfolio.share }}</td> -->
+                    <!-- <td>
+                        <a href="../static/media/{{ portfolio.file }}" class="button-download" download>Download</a>
+                    </td> -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

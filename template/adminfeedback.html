@@ -1,0 +1,78 @@
+{% extends "adminbase.html" %} 
+{% block content %}
+<style>
+  .div{
+    margin-top: 50px;
+    margin-left: 20px;
+  }
+  /* Custom table styles */
+  .custom-table {
+    width: 95%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 12px;
+    text-align: center; /* Center align text */
+    border-bottom: 1px solid #dee2e6; /* Border color */
+  }
+
+  .custom-table th {
+    background-color: #000000; /* Header background color */
+    color: #fff; /* Header text color */
+  }
+
+  .custom-table tbody tr:nth-child(even) {
+    background-color: white; /* Odd row background color */
+  }
+
+  .custom-table tbody tr:nth-child(odd) {
+    background-color: rgb(197, 215, 233); /* Even row background color */
+  }
+
+  .custom-table tbody tr:hover {
+    background-color: whitesmoke; /* Hover row background color */
+  }
+</style>
+
+<div class="div">
+  <h1>Feedback</h1>
+  <table class="table table-hover table-primary table-striped custom-table">
+    <tr>
+        <th>No.</th>
+        <th>Customer</th>
+        <th>Photographer</th>
+        <th>Makeup Artist</th>
+        <th>Content Creator</th>
+        <th>Feedback</th>
+        <th>Date of Feedback</th>
+    </tr>
+    {% for d in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ d.customer.name }}</td>
+        <td>
+            {% if d.customer.portfolio_set.all %}
+                {{ d.customer.portfolio_set.first.photo.name }}
+            {% endif %}
+        </td>
+        <td>
+            {% if d.customer.portfolio_set.all %}
+                {{ d.customer.portfolio_set.first.makeup.name }}
+            {% endif %}
+        </td>
+        <td>
+            {% if d.customer.portfolio_set.all %}
+                {{ d.customer.portfolio_set.first.concre.name }}
+            {% endif %}
+        </td>
+        <td>{{ d.feed }}</td>
+        <td>{{ d.date|date:"d/m/y" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+{% endblock %}
