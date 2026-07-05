@@ -2,179 +2,286 @@
 
 # 🎨 Digital Portfolio Store
 
-### *A Full-Stack Django Platform for Creative Professionals*
+### **A Full-Stack Django Platform for Creative Professionals**
 
-Discover • Showcase • Connect • Book
+<p align="center">
 
-![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
-![Django](https://img.shields.io/badge/Django-Framework-darkgreen?style=for-the-badge&logo=django)
-![SQLite](https://img.shields.io/badge/SQLite-Database-blue?style=for-the-badge&logo=sqlite)
-![HTML5](https://img.shields.io/badge/HTML-5-orange?style=for-the-badge&logo=html5)
-![CSS3](https://img.shields.io/badge/CSS-3-blue?style=for-the-badge&logo=css3)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)
+Create • Showcase • Connect • Collaborate
+
+</p>
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python">
+<img src="https://img.shields.io/badge/Django-Framework-092E20?style=for-the-badge&logo=django">
+<img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite">
+<img src="https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap">
+<img src="https://img.shields.io/badge/HTML-5-E34F26?style=for-the-badge&logo=html5">
+<img src="https://img.shields.io/badge/CSS-3-1572B6?style=for-the-badge&logo=css3">
+<img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript">
+<img src="https://img.shields.io/badge/Git-Version%20Control-F05032?style=for-the-badge&logo=git">
+
+</p>
+
+---
+
+### 🌟 A Complete Digital Portfolio Management Platform
+
+Helping **Photographers**, **Makeup Artists**, **Content Creators**, and **Customers** collaborate through one centralized web application.
 
 </div>
 
 ---
 
-# 📖 About
+# 🚀 About The Project
 
-**Digital Portfolio Store** is a multi-user web application built using **Django** that bridges the gap between creative professionals and customers.
+Digital Portfolio Store is a **multi-role portfolio management platform** developed using **Python** and **Django**.
 
-The platform enables **Photographers**, **Makeup Artists**, and **Content Creators** to build attractive online portfolios while allowing customers to browse portfolios, request services, book appointments, make payments, and provide feedback.
+The system provides a centralized platform where creative professionals can showcase their work while customers can browse portfolios, request services, monitor project progress, complete secure payments, and provide valuable feedback.
 
-The application also provides an **Admin Dashboard** to verify professionals, manage users, monitor transactions, and maintain platform integrity.
-
----
-
-# ✨ Features
-
-## 👨‍💼 Administrator
-
-- Dashboard
-- Manage Customers
-- Manage Photographers
-- Manage Makeup Artists
-- Manage Content Creators
-- Portfolio Verification
-- Approve / Reject Portfolios
-- Payment Monitoring
-- View Feedback
+Unlike a traditional portfolio website, this platform manages the **entire workflow** of a digital portfolio project—from booking to final delivery.
 
 ---
 
-## 👤 Customer
+# ✨ Key Highlights
 
-- Register/Login
-- Browse Professional Portfolios
-- Book Appointments
-- Make Payments
-- Track Booking Progress
-- Submit Ratings & Feedback
-
----
-
-## 📸 Photographer
-
-- Registration
-- Portfolio Management
-- Appointment Management
-- Customer Requests
-- Payment History
+- 👥 Multi-Role Authentication System
+- 📂 Portfolio Management
+- 📅 Appointment Management
+- 💳 Payment Module
+- ⭐ Feedback System
+- 📈 Progress Tracking
+- 👨‍💼 Admin Dashboard
+- 📱 Responsive Interface
+- 🔐 Secure Login System
+- 📄 File Upload Support
 
 ---
 
-## 💄 Makeup Artist
+# 👥 User Roles
 
-- Registration
-- Portfolio Showcase
-- Customer Requests
-- Appointment Management
-- Payment Management
-
----
-
-## 🎬 Content Creator
-
-- Registration
-- Upload Portfolio
-- Handle Customer Requests
-- Manage Appointments
-- Payment Tracking
+| Role | Description |
+|------|-------------|
+| 👨‍💼 Administrator | Controls the entire platform, manages users, portfolios, payments and feedback |
+| 👤 Customer | Creates portfolio requests, tracks projects and makes payments |
+| 📸 Photographer | Handles photography work and project assignments |
+| 💄 Makeup Artist | Provides makeup services for portfolio creation |
+| 🎬 Content Creator | Finalizes portfolio, uploads files and manages project completion |
 
 ---
 
-# 🚀 Tech Stack
+# 🏗️ Complete Workflow
 
-| Technology | Usage |
-|------------|-------|
-| Python | Backend |
-| Django | Web Framework |
-| SQLite | Database |
-| HTML5 | Frontend |
-| CSS3 | Styling |
-| JavaScript | Client-side Logic |
-| Bootstrap | Responsive Design |
-| Git | Version Control |
-| GitHub | Repository Hosting |
-
----
-
-# 🏗️ System Modules
-
+```text
+                    Customer
+                        │
+                        ▼
+           Creates Portfolio Request
+                        │
+                        ▼
+             Photographer Assigned
+                        │
+                        ▼
+            Makeup Artist Assigned
+                        │
+                        ▼
+          Content Creator Assigned
+                        │
+                        ▼
+              Portfolio Development
+                        │
+                        ▼
+             Progress Tracking (0-100%)
+                        │
+                        ▼
+                  Payment Module
+                        │
+                        ▼
+              Project Successfully Delivered
+                        │
+                        ▼
+                Customer Feedback
 ```
-📦 Digital Portfolio Store
-│
-├── 👥 User Management
-├── 📁 Portfolio Management
-├── 📅 Appointment Management
-├── 📨 Request Management
-├── ✅ Verification & Approval
-├── 💳 Payment Management
-└── ⭐ Feedback Management
+
+---
+
+# 🎯 Core Modules
+
+| Module | Description |
+|---------|-------------|
+| 👤 User Management | Registration, Login & Authentication |
+| 📂 Portfolio Management | Create & Manage Portfolios |
+| 📅 Appointment Management | Assign Professionals |
+| 📨 Request Management | Customer Requests |
+| 💳 Payment Management | Handle Payments |
+| ⭐ Feedback System | Customer Reviews |
+| ✅ Verification System | Admin Approval Process |
+
+---
+
+# 🛠️ Technology Stack
+
+| Category | Technologies |
+|----------|--------------|
+| 💻 Backend | Python, Django |
+| 🎨 Frontend | HTML5, CSS3, Bootstrap, JavaScript |
+| 🗄 Database | SQLite |
+| 🔐 Authentication | Django Authentication |
+| 📁 File Storage | Django File Storage |
+| 🧰 Version Control | Git |
+| ☁ Repository | GitHub |
+
+---
+
+# 📊 Project Statistics
+
+| Feature | Count |
+|---------|------:|
+| 👥 User Roles | **5** |
+| 🗂 Database Models | **8** |
+| 📄 HTML Templates | **35+** |
+| ⚙ Views | **50+** |
+| 📁 Static Assets | **300+** |
+| 📦 CRUD Operations | **Complete** |
+| 💳 Payment Module | ✅ |
+| ⭐ Feedback Module | ✅ |
+| 📈 Progress Tracking | ✅ |
+
+---
+
+# 📸 Application Preview
+
+## 🏠 Landing Page
+
+<p align="center">
+<img src="Screenshots/home.png" width="90%">
+</p>
+
+---
+
+## 🔐 Login Page
+
+<p align="center">
+<img src="Screenshots/login.png" width="90%">
+</p>
+
+---
+
+
+## 👨‍💼 Administrator Dashboard
+
+<p align="center">
+<img src="Screenshots/admin_panel.jpeg" width="90%">
+</p>
+
+---
+
+
+## 💳 Payment Module
+
+<p align="center">
+<img src="Screenshots/payment.jpeg" width="90%">
+</p>
+
+---
+
+
+# 🏛️ System Architecture
+
+```text
+                        ┌──────────────────────┐
+                        │      Customer        │
+                        └──────────┬───────────┘
+                                   │
+                          Portfolio Request
+                                   │
+              ┌────────────────────┼────────────────────┐
+              ▼                    ▼                    ▼
+       Photographer         Makeup Artist      Content Creator
+              │                    │                    │
+              └──────────────┬─────┴──────────────┬─────┘
+                             ▼
+                      Portfolio Management
+                             │
+                             ▼
+                     Progress Monitoring
+                             │
+                             ▼
+                       Payment Processing
+                             │
+                             ▼
+                      Feedback & Ratings
+                             │
+                             ▼
+                         Administrator
 ```
 
 ---
 
 # 📂 Project Structure
 
-```
-Portfolio-website
+```text
+Digital Portfolio Store
 │
 ├── portfolio/
 │   ├── settings.py
 │   ├── urls.py
-│   └── wsgi.py
+│   ├── wsgi.py
+│   └── asgi.py
 │
 ├── portfolioApp/
 │   ├── models.py
 │   ├── views.py
 │   ├── admin.py
-│   └── migrations/
+│   ├── migrations/
+│   └── apps.py
 │
-├── static/
 ├── template/
+├── static/
 ├── manage.py
-└── requirements.txt
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-# ⚙️ Installation
+# ⚡ Quick Start
 
-### Clone Repository
-
-```bash
-git clone https://github.com/Athul-27/Portfolio-website.git
-```
-
-### Move into Project
+## 1️⃣ Clone the Repository
 
 ```bash
-cd Portfolio-website
+git clone https://github.com/Athul-27/digital-portfolio-store.git
 ```
 
-### Create Virtual Environment
+---
+
+## 2️⃣ Navigate to the Project
 
 ```bash
-python -m venv venv
+cd digital-portfolio-store
 ```
+
+---
+
+## 3️⃣ Create a Virtual Environment
 
 Windows
 
 ```bash
+python -m venv venv
 venv\Scripts\activate
 ```
 
-Linux
+Linux / macOS
 
 ```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 
 ---
 
-### Install Dependencies
+## 4️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -182,7 +289,7 @@ pip install -r requirements.txt
 
 ---
 
-### Run Migrations
+## 5️⃣ Apply Migrations
 
 ```bash
 python manage.py migrate
@@ -190,13 +297,15 @@ python manage.py migrate
 
 ---
 
-### Start Server
+## 6️⃣ Start Development Server
 
 ```bash
 python manage.py runserver
 ```
 
-Visit
+---
+
+## 🌍 Open in Browser
 
 ```
 http://127.0.0.1:8000/
@@ -204,75 +313,180 @@ http://127.0.0.1:8000/
 
 ---
 
-## 📸 Screenshots
+# 🔑 Authentication Flow
 
-### Login Page
-
-![Login Page](Screenshots/login.png)
-
----
-
-### Admin Dashboard
-
-![Admin Dashboard](Screenshots/admin_panel.jpeg)
----
-
-### Home
-
-![Home](Screenshots/home.png)
----
-
-### Payment
-
-![Payment Page](Screenshots/payment.jpeg)
-
+```text
+                    Login
+                      │
+        ┌─────────────┼──────────────┐
+        ▼             ▼              ▼
+     Customer     Administrator   Professionals
+        │             │              │
+        ▼             ▼              ▼
+  Customer Home   Admin Panel    Individual Dashboard
+```
 
 ---
 
-# 🎯 Future Improvements
+# 💾 Database Design
 
+The application uses **SQLite** as its relational database.
+
+### Main Database Models
+
+- 👤 CustomUser
+- 👤 Customer
+- 📸 Photographer
+- 💄 Makeup Artist
+- 🎬 Content Creator
+- 📂 Portfolio
+- 💳 Payment
+- 💳 Card
+- ⭐ Feedback
+
+---
+
+# 🔥 Major Functionalities
+
+✔ User Authentication
+
+✔ Multi-role Access Control
+
+✔ Portfolio Request Management
+
+✔ Portfolio Assignment
+
+✔ Progress Tracking
+
+✔ Portfolio Upload
+
+✔ File Management
+
+✔ Payment Handling
+
+✔ Feedback Collection
+
+✔ Admin Monitoring
+
+---
+
+# 🎯 Challenges Solved
+
+- Centralized portfolio management
+- Easy communication between creators and customers
+- Digital workflow management
+- Organized payment tracking
+- Portfolio approval system
+- Better customer experience
+- Reduced manual work
+
+---
+
+# 🚀 Future Scope
+
+- 🤖 AI Portfolio Recommendations
+- 💬 Live Chat
 - 📧 Email Notifications
-- 💬 Real-time Chat
-- 🔍 Portfolio Search Filters
-- ❤️ Wishlist
+- 📱 Android & iOS App
 - 🌐 REST API
-- ☁️ Cloud Deployment
-- 📱 Better Mobile Responsiveness
-- 💳 Online Payment Gateway
+- ☁ Cloud Deployment
 - 🔔 Push Notifications
+- 🔍 Advanced Search & Filters
+- ❤️ Wishlist Feature
+- 🌍 Multi-language Support
+- 💵 Online Payment Gateway Integration
 
 ---
 
-# 📊 Project Highlights
+# 📚 What I Learned
 
-✔ Multi-Role Authentication
+During the development of this project, I gained hands-on experience in:
 
-✔ Portfolio Verification Workflow
-
-✔ Appointment Booking System
-
-✔ Payment Management
-
-✔ Customer Feedback System
-
-✔ Responsive User Interface
-
-✔ Django MVC Architecture
+- Django Framework
+- Python Programming
+- CRUD Operations
+- Django Authentication
+- File Upload Handling
+- SQLite Database Design
+- Session Management
+- Role-Based Authentication
+- Frontend Development
+- Git & GitHub
+- MVC Architecture
+- Project Deployment Workflow
 
 ---
 
-# 👨‍💻 Author
+# 📈 Project Summary
 
-### Athul S
+| Feature | Status |
+|----------|:------:|
+| User Authentication | ✅ |
+| Portfolio Management | ✅ |
+| Appointment Management | ✅ |
+| Payment Module | ✅ |
+| Progress Tracking | ✅ |
+| Feedback System | ✅ |
+| Responsive Design | ✅ |
+| Admin Dashboard | ✅ |
+
+---
+
+# 📌 Repository Information
+
+```text
+Project Name   : Digital Portfolio Store
+Project Type   : Full Stack Web Application
+Framework      : Django
+Language       : Python
+Database       : SQLite
+Version        : 1.0
+Status         : Completed
+```
+
+---
+
+# 🤝 Contributing
+
+Contributions, issues and feature requests are welcome.
+
+If you'd like to improve this project:
+
+1. Fork the repository
+2. Create your feature branch
+
+```bash
+git checkout -b feature/NewFeature
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Added New Feature"
+```
+
+4. Push to the branch
+
+```bash
+git push origin feature/NewFeature
+```
+
+5. Open a Pull Request
+
+---
+
+# 👨‍💻 Developer
+
+<div align="center">
+
+## Athul S
+
+Python Developer • Django Developer
 
 GitHub
 
 https://github.com/Athul-27
 
----
-
-<div align="center">
-
-### ⭐ If you found this project interesting, consider giving it a Star ⭐
-
 </div>
+
+---
