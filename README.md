@@ -204,15 +204,28 @@ http://127.0.0.1:8000/
 
 ---
 
-# 🖥️ Screenshots
+## 📸 Screenshots
 
-> Replace these with your actual screenshots.
+### Login Page
 
-| Home | Login |
+![Login Page](Screenshots/login.png)
 
-| Customer Dashboard | Admin Dashboard |
+---
 
-| Portfolio | Payment |
+### Admin Dashboard
+
+![Admin Dashboard](Screenshots/admin_panel.jpeg)
+---
+
+### Home
+
+![Home](Screenshots/home.png)
+---
+
+### Payment
+
+![Payment Page](Screenshots/payment.jpeg)
+
 
 ---
 
